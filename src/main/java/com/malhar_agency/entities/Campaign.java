@@ -1,5 +1,7 @@
 package com.malhar_agency.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,15 +15,15 @@ public class Campaign {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long campaign_id;
-	@Column
+	//@Column(name="name")
 	private String campaign_name;
-	@Column
+	//@Column(name="description")
 	private String campaign_description;
-	@Column
-	private String campaign_start_date;
-	@Column
-	private String campaign_end_date;
-	@Column
+	//@Column(name="startdate")
+	private LocalDate campaign_start_date;
+	//@Column(name="enddate")
+	private LocalDate campaign_end_date;
+	//@Column(name="budget")
 	private double campaign_budget;
 	
 	
@@ -29,8 +31,8 @@ public class Campaign {
 		
 	}
 	
-	public Campaign(String campaign_name, String campaign_description, String campaign_start_date,
-			String campaign_end_date, double campaign_budget) {
+	public Campaign(String campaign_name, String campaign_description, LocalDate campaign_start_date,
+			LocalDate campaign_end_date, double campaign_budget) {
 		super();
 		this.campaign_name = campaign_name;
 		this.campaign_description = campaign_description;
@@ -63,19 +65,19 @@ public class Campaign {
 		this.campaign_description = campaign_description;
 	}
 
-	public String getCampaign_start_date() {
+	public LocalDate getCampaign_start_date() {
 		return campaign_start_date;
 	}
 
-	public void setCampaign_start_date(String campaign_start_date) {
+	public void setCampaign_start_date(LocalDate campaign_start_date) {
 		this.campaign_start_date = campaign_start_date;
 	}
 
-	public String getCampaign_end_date() {
+	public LocalDate getCampaign_end_date() {
 		return campaign_end_date;
 	}
 
-	public void setCampaign_end_date(String campaign_end_date) {
+	public void setCampaign_end_date(LocalDate campaign_end_date) {
 		this.campaign_end_date = campaign_end_date;
 	}
 

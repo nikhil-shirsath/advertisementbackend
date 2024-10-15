@@ -1,8 +1,10 @@
 package com.malhar_agency.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.malhar_agency.dao.ICampaignDao;
@@ -62,6 +64,22 @@ public class CampaignService {
 		}
 		
 		return null;
+	}
+	public List<Campaign> filterByName(String name) {
+		// TODO Auto-generated method stub
+		return cdao.findByNameContaining(name);
+	}
+	public List<Campaign> filterByBudget(double minBudget, double maxBudget) {
+		// TODO Auto-generated method stub
+		return cdao.findByBudget(minBudget,maxBudget);
+	}
+	public List<Campaign> filterByDate(LocalDate startdate, LocalDate enddate) {
+		// TODO Auto-generated method stub
+		return cdao.filterByDate(startdate,enddate);
+	}
+	public List<Campaign> sortCampaigns(Sort sort) {
+		// TODO Auto-generated method stub
+		return cdao.findAll(sort);
 	}
 
 }

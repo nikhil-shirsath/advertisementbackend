@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.malhar_agency.entities.Campaign;
 import com.malhar_agency.services.CampaignService;
 
+import ch.qos.logback.classic.Logger;
+
+import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +22,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/campaigns")
 public class CampaignController {
 	
+
 	@Autowired
 	private CampaignService cservice ;
 	
@@ -56,6 +62,43 @@ public class CampaignController {
 		
 		return cservice.deleteCampaign(id);
 	}
+	
+	//FOR SORTING AND FILTERING OF CAMPAIGN 
+	
+	@GetMapping("/campaign/filter/name")
+	public List<Campaign> filterByName(@RequestParam String name) {
+		return cservice.filterByName(name);
+	}
+	
+	@GetMapping("/campaign/filter/budget")
+	public List<Campaign> filterByBudget(@RequestParam double minBudget , double maxBudget) {
+		return cservice.filterByBudget(minBudget,maxBudget);
+	}
+	
+	@GetMapping("/campaign/filter/date")
+	public List<Campaign> filterByDate
+	 (@RequestParam String start_date,
+     @RequestParam String end_date
+	) {
+		System.out.println(start_date+" "+end_date);
+		LocalDate startdate = LocalDate.parse(start_date.trim());
+		LocalDate enddate = LocalDate.parse(end_date.trim());
+		
+		return cservice.filterByDate(startdate, enddate);
+	}
+	
+	
+	//for sorting api 
+	//this api not worling properly
+	
+	@GetMapping("campaign/sort")
+	public List<Campaign> sortCampaigns(@RequestParam String field , @RequestParam String direction) {
+		
+		Sort sort = direction.equalsIgnoreCase("asc") ?Sort.by(field).ascending() : Sort.by(field).descending();
+		
+		return cservice.sortCampaigns( sort);
+	}
+	
 	
 	
 }
