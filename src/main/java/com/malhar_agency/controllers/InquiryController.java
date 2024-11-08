@@ -14,20 +14,20 @@ import com.malhar_agency.services.InquiryService;
 
 
 @RestController
-@RequestMapping("/inquiry")
+@RequestMapping("/enquiry")
 public class InquiryController {
 
 	@Autowired
 	private InquiryService iservice;
 	
-	@PostMapping("/add/inquiry")
+	@PostMapping("/add/enquiry")
 	public Enquiry addInquiry(@RequestBody Enquiry inquiry) {
 		//TODO: process POST request
 		
 		return iservice.addInquiry(inquiry);
 	}
 	
-	@GetMapping("/getall/inquiries")
+	@GetMapping("/getall/enquiries")
 	public List<Enquiry> getAllInquiries(){
 		return iservice.getAllInquiries();
 	}

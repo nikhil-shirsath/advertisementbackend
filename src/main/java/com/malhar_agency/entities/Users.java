@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
+//needed to add more attributes of entity 
+
+
 @Entity
 public class Users {
 
