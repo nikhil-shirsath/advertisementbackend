@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.malhar_agency.entities.Users;
 import com.malhar_agency.services.UserService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 	@Autowired
 	private UserService uservice;
@@ -30,7 +32,7 @@ public class UserController {
 		 if(u!=null) {
 			 return ResponseEntity.status(201).body(u.toString());
 		 }
-		 return ResponseEntity.badRequest().body(" PassWord Not matched check again  ");
+		 return ResponseEntity.badRequest().body(" Unable to Create new User.  ");
 	}
 	//make sepraton to get only the customers.
 	//need to make changes to get only the cutomers not admins 

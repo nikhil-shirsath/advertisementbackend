@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ import com.malhar_agency.dao.IImageDao;
 import com.malhar_agency.entities.Image;
 import com.malhar_agency.services.CloudinaryImageService;
 import com.malhar_agency.services.ImageService;
-
+@CrossOrigin(origins = "http://localhost:4200") 
 @RestController
 @RequestMapping("/cloudinary/upload")
 public class CloudnaryImageUploadController {
